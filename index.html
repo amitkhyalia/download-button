@@ -1,0 +1,57 @@
+<style>
+    body #downloadButton {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        background-color: #5046e5;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    #downloadButton:hover {
+        background-color: #4338CA;
+    }
+
+    #timerText {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+</style>
+
+
+<center> <button id="downloadButton" onclick="startDownload()">Click to Download</button>
+    <p id="timerText" style="display: none;"><big> Your download link is generating in <span id="countdown">10</span>
+            seconds...</big></p>
+</center>
+
+<script>
+    function startDownload() {
+        // Hide the button
+        document.getElementById('downloadButton').style.display = 'none';
+
+        // Show the timer text
+        let timerText = document.getElementById('timerText');
+        timerText.style.display = 'block';
+
+        // Start the countdown
+        let countdown = 10;
+        let interval = setInterval(function () {
+            countdown--;
+            document.getElementById('countdown').textContent = countdown;
+
+            if (countdown <= 0) {
+                clearInterval(interval);
+                timerText.textContent = 'Your download is loading...';
+
+                // Start the download (replace with your file URL)
+                window.location.href = 'https://www.google.com';
+
+                // Optionally, hide the timer text after download starts
+                // timerText.style.display = 'none';
+            }
+        }, 1000);
+    }
+</script>
